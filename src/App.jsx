@@ -1,31 +1,48 @@
-import "./main.css"
+import React, { useEffect } from "react"
+import "./styles.css"
+import Playfield from "./components/Field.jsx";
+import { playfield, TETROMINES } from "./components/Shapes.jsx";
+import { colplus, setRandomTetromino } from "./components/Changes.jsx";
+import { tetroms } from "./components/Changes.jsx";
 
 function App() {
 
-  const clicked = () => {
-    document.getElementById("1").checked = 1
+  const [state, setState] = React.useState(0)
+
+  const moveD = () => {
+    tetroms.moveDown()
+    setState(state + 1)
+  }
+  const moveL = () => {
+    tetroms.moveLeft()
+    setState(state + 1)
+  }
+  const moveR = () => {
+    tetroms.moveRight()
+    setState(state + 1)
   }
 
+  const rotate = () => {
+    TETROMINES.rotateRight()
+    setState(state+1)
+  }
+
+  const change = () => {
+    tetroms.setRandomTetromino()
+    setState(state + 1)
+  }
+
+  useEffect(() => {
+  })
 
   return (
-    <div>
-      <div className="draw-field">
-        {Array.apply(0, Array(128*64)).map((x, number) => {
-          return (
-            <div>
-              <input type="checkbox" id="1" style={{display: "none"}}></input>
-              <label for="1" onClick={() => clicked()}>
-                <div className="pixels"></div>
-              </label>
-            </div>
-          )
-        })}
-      </div>
-       {(function () {for (let i = 1; i < 10; i++) {
-        return (
-          <h1>1234</h1>
-        )
-       }})()}
+    <div className="main-div">
+      <Playfield></Playfield>
+      <button onClick={() => moveL()}>Влево</button>
+      <button onClick={() => moveD()}>Вниз</button>
+      <button onClick={() => moveR()}>Вправо</button>
+      <button onClick={() => change()}>Change</button>
+      <button onClick={() => rotate()}>rotate</button>
     </div>
   );
 }

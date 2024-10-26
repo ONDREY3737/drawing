@@ -1,0 +1,25 @@
+.main-div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 49vh;
+}
+
+.playfield {
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    
+}
+
+.cell {
+    background-color: aquamarine;
+    width: 95%;
+    aspect-ratio: 1/1;
+    margin-bottom: 5%;
+}
+
+.cell-active {
+    background-color: rgb(255, 105, 18);
+    width: 95%;
+    aspect-ratio: 1/1;
+    margin-bottom: 5%;
+}
